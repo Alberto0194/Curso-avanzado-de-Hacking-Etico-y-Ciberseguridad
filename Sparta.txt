@@ -1,0 +1,84 @@
+Para abirlo recordar tener abiero el dominio vitual en kali para acceder a el ya que es una herramienta obsoleta y trabaja con la version 2020 de kali como al igual que version antigua de sql5 y kali
+
+Pasos para Abrir un Apartado Virtual dentro de Kali Linux
+1. Crear un Entorno Virtual en Kali Linux
+Instalar virtualenv (si no lo tienes): virtualenv es una herramienta para crear entornos virtuales de Python. Para instalarla, abre una terminal y ejecuta:
+
+bash
+Copiar
+Editar
+sudo apt install python3-virtualenv
+Crear un nuevo entorno virtual:
+
+Navega a la carpeta donde quieras crear el entorno virtual (puede ser dentro de tu directorio de trabajo):
+
+bash
+Copiar
+Editar
+cd /ruta/a/tu/carpeta
+Ahora, crea un entorno virtual:
+
+bash
+Copiar
+Editar
+python3 -m venv sparta_env
+Esto creará un directorio llamado sparta_env que contiene el entorno virtual.
+
+2. Activar el Entorno Virtual
+Una vez creado el entorno virtual, debes activarlo para empezar a usarlo.
+
+Si estás usando bash (el shell predeterminado en Kali):
+
+bash
+Copiar
+Editar
+source sparta_env/bin/activate
+Verás que el prompt cambia, indicando que el entorno virtual está activado. Algo como esto:
+
+bash
+Copiar
+Editar
+(sparta_env) kali@kali:~/ruta/a/tu/carpeta$
+3. Instalar Dependencias para Sparta en el Entorno Virtual
+Dentro del entorno virtual, puedes instalar las dependencias necesarias para Sparta. Si estás usando una versión antigua de Sparta con sparta.py, necesitarás algunas bibliotecas de Python. Puedes hacer esto manualmente si no tienes un archivo requirements.txt.
+
+Para instalar algunas dependencias comunes:
+
+bash
+Copiar
+Editar
+pip install requests paramiko
+También puedes consultar el código fuente de Sparta para ver qué más podría necesitar.
+
+4. Descargar Sparta y Ejecutar el Script sparta.py
+Si aún no tienes Sparta descargado, puedes clonarlo desde GitHub. Desde el entorno virtual:
+
+Clonar Sparta (si no lo tienes):
+
+bash
+Copiar
+Editar
+git clone https://github.com/relative-time/sparta.git
+cd sparta
+Ejecutar sparta.py:
+
+Con las dependencias necesarias instaladas y el código de Sparta disponible, simplemente ejecuta el script sparta.py:
+
+bash
+Copiar
+Editar
+python sparta.py
+Si estás usando Python 2 y el script requiere esa versión, puedes activar el entorno con Python 2 y luego ejecutar:
+
+bash
+Copiar
+Editar
+python2 sparta.py
+5. Salir del Entorno Virtual
+Cuando termines de trabajar con Sparta, puedes salir del entorno virtual en cualquier momento simplemente ejecutando:
+
+bash
+Copiar
+Editar
+deactivate
+Esto te devolverá al entorno global de Kali Linux.

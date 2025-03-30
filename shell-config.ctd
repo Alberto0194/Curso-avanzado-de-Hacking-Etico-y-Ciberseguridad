@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <bookmarks list=""/>
+  <node name="Personalización zsh" unique_id="1" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1639047353" ts_lastsave="1707856206">
+    <rich_text>
+</rich_text>
+    <rich_text scale="h1">Personalización de zsh en Kali Linux</rich_text>
+    <rich_text>
+
+Lo primero de todo comprobamos la shell en la que se esta trabajando. 
+
+Recuerda que $$ se corresponde con el pid del proceso actual.
+
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+Más información sobre la shell zsh: </rich_text>
+    <rich_text link="webs https://en.wikipedia.org/wiki/Z_shell">https://en.wikipedia.org/wiki/Z_shell</rich_text>
+    <rich_text>
+
+Para facilitar la gestión de la configuración de zsh, instalamos ohmyzsh: </rich_text>
+    <rich_text link="webs https://github.com/ohmyzsh/ohmyzsh/wiki">https://github.com/ohmyzsh/ohmyzsh/wiki</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+El mensaje que aparece de Python es simplemente informativo cuando haces login con Kali Linux
+
+Instalamos el tema powerlevel10k: </rich_text>
+    <rich_text link="webs https://github.com/romkatv/powerlevel10k">https://github.com/romkatv/powerlevel10k</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+Modificamos el fichero de configuracion ~/.zshrc y añadimos la siguiente sentencia:
+
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+Para cambiar la configuración del prompt reiniciamos la terminal o ejecutamos el siguiente comando: 
+
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+Modificamos el fichero de configuracion ~/.p10k.zsh y seleccionamos las características que nos interesen.
+
+Instalamos un modulo para sugerencias automaticas:
+
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+Instalamos un plugin que resalta la sintaxis:
+
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+Modificamos el fichero de configuracion ~/.zshrc y añadimos la siguiente sentencia:
+
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+Por último cambiamos la configuración de la terminal y creamos los siguientes atajos de teclado:
+
+- Split Terminal Horizontally -&gt; Ctrl-space
+- Split Terminal Vertically -&gt; Ctrl-\
+- Collapse Subterminal -&gt; Ctrl-Backspace
+- Right subterminal -&gt; Ctrl-]
+- Left subterminal -&gt; Ctrl-[</rich_text>
+    <codebox char_offset="174" justification="left" frame_width="500" frame_height="60" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">
+ls -l /proc/$$/exe</codebox>
+    <codebox char_offset="367" justification="left" frame_width="778" frame_height="60" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</codebox>
+    <codebox char_offset="541" justification="left" frame_width="1010" frame_height="60" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k</codebox>
+    <codebox char_offset="629" justification="left" frame_width="500" frame_height="60" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">
+ZSH_THEME="powerlevel10k/powerlevel10k"</codebox>
+    <codebox char_offset="734" justification="left" frame_width="500" frame_height="60" width_in_pixels="1" syntax_highlighting="python3" highlight_brackets="1" show_line_numbers="0">
+p10k configure</codebox>
+    <codebox char_offset="897" justification="left" frame_width="986" frame_height="60" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions</codebox>
+    <codebox char_offset="947" justification="left" frame_width="1082" frame_height="60" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting</codebox>
+    <codebox char_offset="1035" justification="left" frame_width="500" frame_height="60" width_in_pixels="1" syntax_highlighting="python3" highlight_brackets="1" show_line_numbers="0">
+plugins=( 
+    # other plugins...
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
+</codebox>
+  </node>
+</cherrytree>

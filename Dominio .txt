@@ -1,0 +1,11 @@
+clave de mi bosque (forest) corp.local > clave > CORP\Administrador Password 192.168.0.7
+WS01 > kali > 192.168.0.8 > corp\empleado1 @ng01*Apolo
+WS02 > kali02 > 192.168.0.2 > corp\empleado2 1234
+kali > 192.168.0.9 kali
+
+neo4j 
+password4
+
+para todos los usuarios Ap09mncd
+
+ip addr show | grep 'inet' para ver ip de maquina que no suben o no se ve la informacion completa

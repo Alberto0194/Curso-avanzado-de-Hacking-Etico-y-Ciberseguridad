@@ -1,0 +1,97 @@
+responder -h
+                                           __
+    .----.-----.-----.-----.-----.-----.--| |.-----.----.
+    | _| -__|__ --| _ | _ | | _ || -__| _|
+    |__| |_____|_____| __|_____|__|__|_____||_____|__|
+                     |__|
+
+             Respuesta de NBT-NS, LLMNR y MDNS 3.1.4.0
+
+    Para apoyar este proyecto:
+    Github -> https://github.com/sponsors/lgandx
+    Paypal -> https://paypal.me/PythonResponder
+
+    Autor: Laurent Gaffie (laurent.gaffie@gmail.com)
+    Para eliminar este script presione CTRL-C
+
+Uso: responder -I eth0 -w -d
+o:
+respuesta -I eth0 -wd
+
+Opciones:
+    --version muestra el número de versión del programa y sale
+    -h, --help muestra este mensaje de ayuda y sale
+    -A, --analyze Modo Analizar. Esta opción le permite ver NBT-NS,
+                          NAVEGADOR, solicitudes LLMNR sin responder.
+    -Yo eth0, --interfaz=eth0
+                          Interfaz de red a utilizar, puede utilizar 'TODOS' como
+                          comodín para todas las interfaces
+    -yo 10.0.0.21, --ip=10.0.0.21
+                          IP local a usar (solo para OSX)
+    -6 2002:c0a8:f7:1:3ba8:aceb:b1a9:81ed, --externalip6=2002:c0a8:f7:1:3ba8:aceb:b1a9:81ed
+                          Envenene todas las solicitudes con otra dirección IPv6 distinta a la
+                          La respuesta es una.
+    -e 10.0.0.22, --ip externa=10.0.0.22
+                          Envenenar todas las solicitudes con otra dirección IP que no sea
+                          La respuesta es una.
+    -b, --basic Volver a la autenticación HTTP básica. Valor predeterminado: NTLM
+    -d, --DHCP Habilita respuestas para solicitudes de transmisión DHCP. Este
+                          La opción inyectará un servidor WPAD en la respuesta DHCP.
+                          Valor predeterminado: Falso
+    -D, --DHCP-DNS Esta opción inyectará un servidor DNS en el DHCP
+                          respuesta; de lo contrario, se agregará un servidor WPAD.
+                          Valor predeterminado: Falso
+    -w, --wpad Inicia el servidor proxy fraudulento WPAD. El valor predeterminado es
+                          FALSO
+    -u UPSTREAM_PROXY, --upstream-proxy=UPSTREAM_PROXY
+                          Proxy HTTP ascendente utilizado por el proxy WPAD no autorizado para
+                          solicitudes salientes (formato: host:puerto)
+    -F, --ForceWpadAuth Forzar autenticación NTLM/básica en el archivo wpad.dat
+                          recuperación. Esto puede provocar un mensaje de inicio de sesión. Por defecto:
+                          FALSO
+    -P, --ProxyAuth Force NTLM (transparentemente)/Básico (aviso)
+                          autenticación para el proxy. WPAD no necesita ser
+                          EN. Esta opción es muy eficaz. Valor predeterminado: Falso
+    -Q, --quiet Indica que la respuesta esté en silencio, desactiva un montón de
+                          impresión de los envenenadores. Valor predeterminado: Falso
+    --lm Forzar la degradación del hash LM para Windows XP/2003 y
+                          más temprano. Valor predeterminado: Falso
+    --disable-ess Forzar la degradación de ESS. Valor predeterminado: Falso
+    -v, --verbose Aumenta la verbosidad.
+
+El comando **Responder** es una herramienta de seguridad de redes, utilizada para realizar ataques en redes locales aprovechando vulnerabilidades en los protocolos de resolución de nombres. Estos protocolos son utilizados por sistemas operativos para identificar dispositivos en la red y hacer resoluciones de nombres a direcciones IP, como **LLMNR** (Link-Local Multicast Name Resolution), **NBT-NS** (NetBIOS Name Service), y **MDNS** (Multicast DNS).
+
+Lo que **Responder** hace es actuar como un servidor malicioso que se pone "en medio" de estas solicitudes de resolución de nombres en una red, de modo que cuando una máquina en la red hace una solicitud de resolución de un nombre (por ejemplo, cuando un dispositivo no encuentra un servidor en la red), **Responder** puede interceptar esa solicitud y responder con su propia información, redirigiendo la víctima a sí mismo.
+
+### Funciones principales de **Responder**:
+
+1. **Captura de credenciales**:
+   Cuando un dispositivo de la red intenta resolver el nombre de un recurso (como un servidor de archivos), si **Responder** está corriendo, puede interceptar esa solicitud y enviar una respuesta falsa, haciendo que el dispositivo envíe sus credenciales de autenticación al atacante. Estas credenciales pueden estar en formato **NTLMv1** o **NTLMv2**, lo que permite luego intentar descifrarlas (crackeo de hashes).
+
+2. **Ataque de hombre en el medio (MitM)**:
+   Una vez que **Responder** engaña a la víctima haciéndola creer que es el recurso solicitado, puede capturar la información enviada entre el dispositivo y la supuesta máquina, lo que le permite realizar ataques como interceptar tráfico HTTP, SMB, FTP, etc.
+
+3. **Suplantación de servidores**:
+   **Responder** puede responder en lugar de servidores legítimos en la red. Por ejemplo, si alguien en la red solicita acceso a un servidor SMB, **Responder** puede actuar como el servidor SMB falso y capturar los intentos de autenticación.
+
+### Protocolos afectados:
+
+- **LLMNR (Link-Local Multicast Name Resolution)**: Protocolo usado en redes Windows para la resolución de nombres de dispositivos en la misma red local cuando el DNS no puede resolver un nombre.
+  
+- **NBT-NS (NetBIOS Name Service)**: Protocolo de resolución de nombres utilizado en redes antiguas de Windows.
+
+- **MDNS (Multicast DNS)**: Usado para la resolución de nombres en redes locales sin un servidor DNS centralizado, común en redes que utilizan dispositivos Apple o Bonjour.
+
+- **WPAD (Web Proxy Auto-Discovery Protocol)**: Usado para configurar automáticamente servidores proxy en una red.
+
+### Ejemplo de uso:
+
+Un uso típico sería simplemente iniciar **Responder** para interceptar consultas en una red:
+
+```bash
+sudo responder -I eth0
+```
+
+Esto activaría **Responder** en la interfaz de red `eth0` y comenzaría a escuchar y responder a consultas LLMNR, NBT-NS y MDNS en esa red, intentando interceptar credenciales y otro tipo de tráfico.
+
+En resumen, **Responder** es una herramienta muy útil para profesionales de seguridad que realizan auditorías de redes y pruebas de penetración (pentesting), ya que les permite identificar y explotar fallos en la resolución de nombres y credenciales mal protegidas en redes corporativas o locales.

